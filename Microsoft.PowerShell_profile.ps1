@@ -20,9 +20,11 @@ New-Alias -Name pn -Value pnpm
 $nodeVersion = Get-Content -Path ".nvmrc" -ErrorAction SilentlyContinue
 
 if ($nodeVersion) {
-    nvm use $nodeVersion
-    Write-Output "Node.js version $nodeVersion has been activated."
+		nvm use $nodeVersion
+		Write-Output "Node.js version $nodeVersion has been activated."
 } 
-# else {
-#    Write-Output "No .nvmrc file found in the current directory."
-# }
+else {
+		# Write-Output "No .nvmrc file found in the current directory."
+		nvm use lts | Out-Null
+}
+
