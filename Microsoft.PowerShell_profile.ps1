@@ -25,6 +25,6 @@ if ($nodeVersion) {
 } 
 else {
 		# Write-Output "No .nvmrc file found in the current directory."
-		nvm use lts | Out-Null
+		nvm use latest | Out-Null
 }
 
