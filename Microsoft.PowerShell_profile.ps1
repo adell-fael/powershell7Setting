@@ -23,14 +23,15 @@ if ($nodeVersion) {
 	nvm use $nodeVersion
 	Write-Output "Node.js version $nodeVersion has been activated."
 } 
-else {
+else { 
 	$latestVersion = (nvm list available | Select-String -Pattern '\|\s+([^\s]+)\s+\|' | ForEach-Object { $_.Matches.Groups[1].Value } | Where-Object { $_ -notmatch 'CURRENT' } | Sort-Object -Descending | Select-Object -First 1).Trim()
 	$currentVersion = nvm current
 
 	if ($latestVersion) {
 		if ($currentVersion) {
+			nvm use $latestVersion | Out-Null
 			if ($currentVersion -replace "v", "" -eq $latestVersion) {
-				Write-Output "You are already using the latest Node.js version ($currentVersion)."
+				Write-Output "You are already using the latest Node.js version ($currentVersion)." | Out-Null
 			}
 			else {
 				Write-Output "Current Node.js version: $currentVersion"
@@ -43,6 +44,7 @@ else {
 		else {
 			Write-Output "Unable to determine the current Node.js version."
 		}
+
 	}
 	else {
 		Write-Output "No available Node.js versions found."
