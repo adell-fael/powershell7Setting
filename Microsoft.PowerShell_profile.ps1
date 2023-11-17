@@ -9,18 +9,17 @@
 # oh-my-posh init pwsh --config 'C:\Users\new19\AppData\Local\Programs\oh-my-posh\themes\tonybaloney.omp.json' | Invoke-Expression
 
 
-Invoke-Expression (&starship init powershell)
-
+# modules
 Import-Module -Name Terminal-Icons
 
 Set-PSReadLineOption -PredictionSource History
 Set-PSReadLineOption -PredictionViewStyle ListView
 Set-PSReadLineOption -EditMode Windows
 
-
+# alias
 New-Alias -Name pn -Value pnpm
 
-
+# nvm 
 $nodeVersion = Get-Content -Path ".nvmrc" -ErrorAction SilentlyContinue
 
 if ($nodeVersion) {
@@ -54,3 +53,9 @@ else {
 		Write-Output "No available Node.js versions found."
 	}
 }
+
+
+$ENV:STARSHIP_CONFIG = "C:\Users\new19\Documents\PowerShell\starship.toml"
+
+
+Invoke-Expression (&starship init powershell)
