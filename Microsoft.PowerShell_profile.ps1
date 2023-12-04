@@ -58,39 +58,39 @@ Set-PSReadLineOption -EditMode Windows
 New-Alias -Name pn -Value pnpm
 
 # nvm 
-$nodeVersion = Get-Content -Path ".nvmrc" -ErrorAction SilentlyContinue
+# $nodeVersion = Get-Content -Path ".nvmrc" -ErrorAction SilentlyContinue
 
-if ($nodeVersion) {
-	nvm use $nodeVersion
-	Write-Output "Node.js version $nodeVersion has been activated."
-} 
-else { 
-	$latestVersion = (nvm list available | Select-String -Pattern '\|\s+([^\s]+)\s+\|' | ForEach-Object { $_.Matches.Groups[1].Value } | Where-Object { $_ -notmatch 'CURRENT' } | Sort-Object -Descending | Select-Object -First 1).Trim()
-	$currentVersion = nvm current
+# if ($nodeVersion) {
+# 	nvm use $nodeVersion
+# 	Write-Output "Node.js version $nodeVersion has been activated."
+# } 
+# else { 
+# 	$latestVersion = (nvm list available | Select-String -Pattern '\|\s+([^\s]+)\s+\|' | ForEach-Object { $_.Matches.Groups[1].Value } | Where-Object { $_ -notmatch 'CURRENT' } | Sort-Object -Descending | Select-Object -First 1).Trim()
+# 	$currentVersion = nvm current
 
-	if ($latestVersion) {
-		if ($currentVersion) {
-			nvm use $latestVersion | Out-Null
-			if ($currentVersion -replace "v", "" -eq $latestVersion) {
-				Write-Output "You are already using the latest Node.js version ($currentVersion)." | Out-Null
-			}
-			else {
-				Write-Output "Current Node.js version: $currentVersion"
-				Write-Output "Latest Node.js version: $latestVersion"
-				Write-Output "To install and use the latest version, run:"
-				Write-Output "nvm install $latestVersion"
-				Write-Output "nvm use $latestVersion"
-			}
-		}
-		else {
-			Write-Output "Unable to determine the current Node.js version."
-		}
+# 	if ($latestVersion) {
+# 		if ($currentVersion) {
+# 			nvm use $latestVersion | Out-Null
+# 			if ($currentVersion -replace "v", "" -eq $latestVersion) {
+# 				Write-Output "You are already using the latest Node.js version ($currentVersion)." | Out-Null
+# 			}
+# 			else {
+# 				Write-Output "Current Node.js version: $currentVersion"
+# 				Write-Output "Latest Node.js version: $latestVersion"
+# 				Write-Output "To install and use the latest version, run:"
+# 				Write-Output "nvm install $latestVersion"
+# 				Write-Output "nvm use $latestVersion"
+# 			}
+# 		}
+# 		else {
+# 			Write-Output "Unable to determine the current Node.js version."
+# 		}
 
-	}
-	else {
-		Write-Output "No available Node.js(.nvmrc) versions found."
-	}
-}
+# 	}
+# 	else {
+# 		Write-Output "No available Node.js(.nvmrc) versions found."
+# 	}
+# }
 
 
 $ENV:STARSHIP_CONFIG = "C:\Users\new19\Documents\PowerShell\starship.toml"

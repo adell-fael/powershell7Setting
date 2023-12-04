@@ -5,17 +5,9 @@
 success_symbol = '[➜](bold green)' # The 'success_symbol' segment is being set to '➜' with the color 'bold green'
 
 
-[cmd_duration]
-format = '- [$duration]($style)'
-
-[time]
-format = '- [$time]($style)'
 
 [aws]
 symbol = "  "
-
-[bun]
-format = ' [$symbol($version)]($style)'
 
 [buf]
 symbol = " "
@@ -131,7 +123,6 @@ Unknown = " "
 Windows = "󰍲 "
 
 [package]
-disabled = true
 symbol = "󰏗 "
 
 [pijul_channel]
